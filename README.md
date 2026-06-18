@@ -23,6 +23,13 @@ python3 -m http.server 8080
 # → http://localhost:8080
 ```
 
+## Live demo (GitHub Pages)
+
+- **Prototype:** https://karinapontecorvo.github.io/find-my-rate-prototype/
+- **Repo:** https://github.com/KarinaPontecorvo/find-my-rate-prototype
+
+Deployed from branch `cursor/find-my-rate-prototype`. After pushing updates, the site refreshes in 1–2 minutes.
+
 ## Flows
 
 1. **Find My Rate — Search:** Enter Member ID, hotel, dates → **Search**
