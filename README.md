@@ -28,7 +28,9 @@ python3 -m http.server 8080
 - **Prototype:** https://karinapontecorvo.github.io/find-my-rate-prototype/
 - **Repo:** https://github.com/KarinaPontecorvo/find-my-rate-prototype
 
-Deployed from branch `cursor/find-my-rate-prototype`. After pushing updates, the site refreshes in 1–2 minutes.
+Deployed from `main` via GitHub Actions on every push (1–2 minutes to update).
+
+**Note:** The repo is **public** so GitHub Pages works on a free account. If you need it private, use a GitHub org plan with Pages or an alternative host (Netlify, etc.).
 
 ## Flows
 
