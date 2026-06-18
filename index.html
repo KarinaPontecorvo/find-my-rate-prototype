@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find My Rate — Duetto Prototype</title>
+    <link rel="stylesheet" href="styles/components.css" />
+  </head>
+  <body>
+    <!-- Global product header (live Duetto shell) -->
+    <header class="shell-header" role="banner">
+      <a class="shell-header__brand" href="#" aria-label="Duetto home">
+        <img
+          class="shell-header__logo"
+          src="assets/duetto-logo.svg"
+          alt="Duetto"
+          width="120"
+          height="26"
+        />
+      </a>
+
+      <nav class="shell-header__nav" aria-label="Main navigation">
+        <a class="shell-header__link" href="#">Home</a>
+        <button type="button" class="shell-header__link shell-header__link--menu" aria-haspopup="true">
+          Pricing &amp; Strategy
+          <span class="shell-header__chevron" aria-hidden="true">▾</span>
+        </button>
+        <button type="button" class="shell-header__link shell-header__link--menu">
+          Forecasts &amp; Budgets
+          <span class="shell-header__chevron" aria-hidden="true">▾</span>
+        </button>
+        <button type="button" class="shell-header__link shell-header__link--menu">
+          Reports
+          <span class="shell-header__chevron" aria-hidden="true">▾</span>
+        </button>
+        <button type="button" class="shell-header__link shell-header__link--menu">
+          Groups
+          <span class="shell-header__chevron" aria-hidden="true">▾</span>
+        </button>
+        <a
+          class="shell-header__link shell-header__link--active"
+          href="#find-my-rate"
+          data-shell-nav="find-my-rate"
+          >Find My Rate</a
+        >
+        <a class="shell-header__link" href="#">Onboarding</a>
+      </nav>
+
+      <div class="shell-header__utilities">
+        <button type="button" class="shell-header__icon-btn" aria-label="Notifications">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 3a5 5 0 0 0-5 5v3.5L5 14v1h14v-1l-2-2.5V8a5 5 0 0 0-5-5zm0 18a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 21z"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+          </svg>
+        </button>
+        <button type="button" class="shell-header__icon-btn" aria-label="Help">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
+            <path d="M9.5 9.5a2.5 2.5 0 1 1 4.2 1.8c-.9.7-1.2 1.2-1.2 2.2" stroke="currentColor" stroke-width="1.6" />
+            <circle cx="12" cy="17" r="1" fill="currentColor" />
+          </svg>
+        </button>
+        <button type="button" class="shell-header__icon-btn" aria-label="Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm8.2 3.5l1.8 1-1.5 2.6-2-.3-1.2 1.7-1.6-1.2-1.7 1.2-1.2-1.7-2 .3-1.5-2.6 1.8-1-1.8-1 1.5-2.6 2 .3 1.2-1.7 1.7 1.2 1.2-1.7 2-.3 1.5 2.6-1.8 1 1.8 1z"
+              stroke="currentColor"
+              stroke-width="1.2"
+            />
+          </svg>
+        </button>
+        <button type="button" class="shell-header__avatar" aria-label="User menu">K</button>
+      </div>
+    </header>
+
+    <!-- Child header — Design System v4 (node 11985-158653) -->
+    <div class="child-header">
+      <nav class="child-header__nav" aria-label="Find My Rate sections">
+        <a
+          class="child-header__link child-header__link--active"
+          href="#find-my-rate"
+          data-child-nav="find-my-rate"
+          >Find My Rate</a
+        >
+        <a
+          class="child-header__link"
+          href="#reservation-queue"
+          data-child-nav="reservation-queue"
+          >Reservation Queue</a
+        >
+      </nav>
+    </div>
+
+    <!-- Find My Rate -->
+    <main id="page-find-my-rate" class="page" role="main">
+      <header class="page-heading">
+        <div id="fmr-breadcrumb" class="page-heading__breadcrumb hidden">
+          <button type="button" id="btn-new-search">‹ New Search</button>
+        </div>
+        <h1 class="page-heading__title">Find My Rate</h1>
+      </header>
+
+      <section id="fmr-search-view">
+        <form class="search-form" id="search-form" novalidate>
+          <div class="field">
+            <label class="field__label" for="member-id">Member ID</label>
+            <input
+              class="field__input"
+              type="text"
+              id="member-id"
+              name="memberId"
+              placeholder="100115 or 100987"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="hotel">Hotel</label>
+            <input
+              class="field__input"
+              type="text"
+              id="hotel"
+              name="hotel"
+              value="Wildhorse Casino Resort"
+            />
+          </div>
+
+          <div class="field">
+            <label class="field__label" id="date-picker-search-label">Date Range</label>
+            <div class="date-picker" id="date-picker-search" data-picker-id="search">
+              <button
+                type="button"
+                class="date-picker__trigger"
+                id="date-picker-search-trigger"
+                aria-labelledby="date-picker-search-label"
+                aria-expanded="false"
+                aria-haspopup="dialog"
+              >
+                <span id="date-picker-search-display">05/20/26 - 05/21/26</span>
+                <span class="date-picker__icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <rect x="2" y="3" width="12" height="11" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M2 6h12M5 1v3M11 1v3" stroke="currentColor" stroke-width="1.2"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="date-picker__popover" role="dialog" aria-label="Choose date range">
+                <div class="date-picker__header">
+                  <button type="button" class="date-picker__nav" data-nav="prev" aria-label="Previous month">‹</button>
+                  <span class="date-picker__month-label" id="date-picker-search-month"></span>
+                  <button type="button" class="date-picker__nav" data-nav="next" aria-label="Next month">›</button>
+                </div>
+                <div class="date-picker__weekdays">
+                  <span class="date-picker__weekday">Sun</span>
+                  <span class="date-picker__weekday">Mon</span>
+                  <span class="date-picker__weekday">Tue</span>
+                  <span class="date-picker__weekday">Wed</span>
+                  <span class="date-picker__weekday">Thu</span>
+                  <span class="date-picker__weekday">Fri</span>
+                  <span class="date-picker__weekday">Sat</span>
+                </div>
+                <div class="date-picker__grid" id="date-picker-search-grid"></div>
+                <div class="date-picker__legend">
+                  <span class="date-picker__legend-item"
+                    ><span class="date-picker__legend-dot date-picker__legend-dot--standard"></span> Standard
+                    rate</span
+                  >
+                  <span class="date-picker__legend-item"
+                    ><span class="date-picker__legend-dot date-picker__legend-dot--comp"></span> COMP</span
+                  >
+                  <span class="date-picker__legend-item"
+                    ><span class="date-picker__legend-dot date-picker__legend-dot--fallback"></span> Fallback rate</span
+                  >
+                  <span class="date-picker__legend-item"
+                    ><span class="date-picker__legend-dot date-picker__legend-dot--na"></span> N/A</span
+                  >
+                </div>
+                <div class="date-picker__footer">
+                  <button type="button" class="btn btn--ghost btn--sm" data-action="clear">Clear</button>
+                  <button type="button" class="btn btn--primary btn--sm" data-action="apply">Apply</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Search</button>
+
+          <div class="search-form__flex-row">
+            <label class="checkbox">
+              <input type="checkbox" id="flexible-dates" name="flexible" />
+              My dates are flexible
+            </label>
+          </div>
+        </form>
+      </section>
+
+      <section id="fmr-results-view" class="results-stack hidden">
+        <form class="search-form" id="search-form-results" novalidate>
+          <div class="field">
+            <label class="field__label" for="member-id-results">Member ID</label>
+            <input class="field__input" type="text" id="member-id-results" value="100115" readonly />
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="hotel-results">Hotel</label>
+            <input
+              class="field__input"
+              type="text"
+              id="hotel-results"
+              value="Wildhorse Casino Resort"
+              readonly
+            />
+          </div>
+
+          <div class="field">
+            <label class="field__label" id="date-picker-results-label">Date Range</label>
+            <div class="date-picker" id="date-picker-results" data-picker-id="results">
+              <button
+                type="button"
+                class="date-picker__trigger"
+                id="date-picker-results-trigger"
+                aria-labelledby="date-picker-results-label"
+                aria-expanded="false"
+              >
+                <span id="date-picker-results-display">05/20/26 - 05/21/26</span>
+                <span class="date-picker__icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <rect x="2" y="3" width="12" height="11" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M2 6h12M5 1v3M11 1v3" stroke="currentColor" stroke-width="1.2"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="date-picker__popover" role="dialog" aria-label="Choose date range">
+                <div class="date-picker__header">
+                  <button type="button" class="date-picker__nav" data-nav="prev" aria-label="Previous month">‹</button>
+                  <span class="date-picker__month-label" id="date-picker-results-month"></span>
+                  <button type="button" class="date-picker__nav" data-nav="next" aria-label="Next month">›</button>
+                </div>
+                <div class="date-picker__weekdays">
+                  <span class="date-picker__weekday">Sun</span>
+                  <span class="date-picker__weekday">Mon</span>
+                  <span class="date-picker__weekday">Tue</span>
+                  <span class="date-picker__weekday">Wed</span>
+                  <span class="date-picker__weekday">Thu</span>
+                  <span class="date-picker__weekday">Fri</span>
+                  <span class="date-picker__weekday">Sat</span>
+                </div>
+                <div class="date-picker__grid" id="date-picker-results-grid"></div>
+                <div class="date-picker__legend">
+                  <span class="date-picker__legend-item"
+                    ><span class="date-picker__legend-dot date-picker__legend-dot--standard"></span> Standard</span
+                  >
+                  <span class="date-picker__legend-item"
+                    ><span class="date-picker__legend-dot date-picker__legend-dot--comp"></span> COMP</span
+                  >
+                  <span class="date-picker__legend-item"
+                    ><span class="date-picker__legend-dot date-picker__legend-dot--fallback"></span> Fallback</span
+                  >
+                  <span class="date-picker__legend-item"
+                    ><span class="date-picker__legend-dot date-picker__legend-dot--na"></span> N/A</span
+                  >
+                </div>
+                <div class="date-picker__footer">
+                  <button type="button" class="btn btn--ghost btn--sm" data-action="clear">Clear</button>
+                  <button type="button" class="btn btn--primary btn--sm" data-action="apply">Apply</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Search</button>
+
+          <div class="search-form__flex-row">
+            <label class="checkbox">
+              <input type="checkbox" id="flexible-dates-results" />
+              My dates are flexible
+            </label>
+          </div>
+        </form>
+
+        <div id="loyalty-alert" class="alert-banner hidden" role="alert">
+          Loyalty rates are unavailable for this reservation as it will exceed guest's limit of 6 nights with
+          loyalty rates in 7 days. Additional nights are offered at loyalty pricing.
+        </div>
+
+        <div id="member-info" class="member-info hidden" role="region" aria-label="Member information">
+          <div class="member-info__card">
+            <span class="member-info__label">Member Worth</span>
+            <span class="member-info__value" id="member-worth">—</span>
+          </div>
+          <div class="member-info__card">
+            <span class="member-info__label">Reservations on Books</span>
+            <span class="member-info__value" id="member-reservations">—</span>
+          </div>
+          <div class="member-info__card member-info__card--muted">
+            <span class="member-info__label">Segment</span>
+            <span class="member-info__value member-info__value--sm" id="member-segment">—</span>
+          </div>
+        </div>
+
+        <div id="rate-codes-wrap" class="rate-codes rate-codes--single" role="region" aria-label="Rate codes">
+          <div class="rate-code-card">
+            <span class="rate-code-card__label">Member's Rate Code:</span>
+            <span class="rate-code-card__code" id="rate-code">CAS2</span>
+            <button type="button" class="btn btn--primary btn--sm" id="btn-copy-rate">Copy</button>
+          </div>
+          <div id="fallback-rate-card" class="rate-code-card rate-code-card--fallback hidden">
+            <span class="rate-code-card__label">Fallback Rate Code:</span>
+            <span class="rate-code-card__code" id="fallback-rate-code">CAS7FB</span>
+            <button type="button" class="rate-code-card__info" title="Fallback rate code" aria-label="Info">i</button>
+            <button type="button" class="btn btn--primary btn--sm" id="btn-copy-fallback-rate">Copy</button>
+          </div>
+        </div>
+
+        <div class="rates-toolbar hidden" id="rates-toolbar">
+          <div class="rates-toolbar__filters">
+            <label class="rates-toolbar__filter-label" for="room-sort">Sort by</label>
+            <select id="room-sort" class="rates-toolbar__select field__input">
+              <option value="name">Room type name</option>
+              <option value="total">Total price</option>
+              <option value="freeNights">Free nights</option>
+              <option value="inventory">Rooms remaining</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="room-search-empty" class="rates-empty hidden" role="status">No room types match your search.</p>
+
+        <div class="ds-table-card ds-table-card--unified hidden" id="rates-table-card" role="region" aria-label="Property inventory and room rates">
+          <div class="ag-quick-filter" role="search">
+            <span class="ag-quick-filter__icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                <path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </span>
+            <input
+              type="text"
+              id="room-quick-filter"
+              class="ag-quick-filter__input"
+              placeholder="Search room types…"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Quick filter room types"
+            />
+            <button
+              type="button"
+              id="room-quick-filter-clear"
+              class="ag-quick-filter__clear hidden"
+              aria-label="Clear filter"
+            >
+              ×
+            </button>
+            <span class="ag-quick-filter__count" id="room-filter-count" aria-live="polite"></span>
+          </div>
+          <div class="ds-table__viewport">
+            <table class="ds-table__table ds-table__table--unified">
+              <thead class="ds-table__head" id="rates-thead"></thead>
+              <tbody class="ds-table__body" id="rates-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Reservation Queue -->
+    <main id="page-reservation-queue" class="page hidden" role="main">
+      <header class="page-heading">
+        <h1 class="page-heading__title">Reservation Queue</h1>
+      </header>
+      <div class="ds-table-card ds-table-card--wide" role="region" aria-label="Reservation queue">
+        <div class="ds-table__viewport">
+          <table class="ds-table__table">
+            <thead class="ds-table__head">
+              <tr>
+                <th class="ds-table__th" scope="col"><span class="ds-table__th-text">Member ID(s)</span></th>
+                <th class="ds-table__th" scope="col"><span class="ds-table__th-text">Arrival Date</span></th>
+                <th class="ds-table__th" scope="col"><span class="ds-table__th-text">Departure Date</span></th>
+                <th class="ds-table__th" scope="col"><span class="ds-table__th-text">Hotel</span></th>
+                <th class="ds-table__th" scope="col"><span class="ds-table__th-text">Rate Code</span></th>
+                <th class="ds-table__th" scope="col"><span class="ds-table__th-text">Notes</span></th>
+                <th class="ds-table__th" scope="col"><span class="ds-table__th-text">Room Type Requested</span></th>
+                <th class="ds-table__th" scope="col"><span class="ds-table__th-text">Room Type Code</span></th>
+                <th class="ds-table__th" scope="col"><span class="ds-table__th-text">Total Rate</span></th>
+                <th class="ds-table__th" scope="col"><span class="ds-table__th-text">Created</span></th>
+                <th class="ds-table__th" scope="col"><span class="ds-table__th-text">Created By</span></th>
+              </tr>
+            </thead>
+            <tbody class="ds-table__body" id="reservation-queue-tbody">
+              <tr class="ds-table__row">
+                <td class="ds-table__td ds-table__td--empty" colspan="11">No reservations in queue</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
