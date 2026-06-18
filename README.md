@@ -23,33 +23,14 @@ python3 -m http.server 8080
 # → http://localhost:8080
 ```
 
-## Repository
-
-- **Org repo (private):** https://github.com/duettoresearch/find-my-rate-prototype
-- **Default branch:** `main`
-- **Feature branch:** `cursor/find-my-rate-prototype`
-
-Clone for local review:
-
-```bash
-git clone https://github.com/duettoresearch/find-my-rate-prototype.git
-cd find-my-rate-prototype
-python3 -m http.server 8080
-# → http://localhost:8080
-```
-
 ## Live demo (GitHub Pages)
 
-Pages must be enabled by a **duettoresearch org admin** (repo admins need `admin` to turn this on):
+- **Prototype:** https://karinapontecorvo.github.io/find-my-rate-prototype/
+- **Repo:** https://github.com/KarinaPontecorvo/find-my-rate-prototype
 
-1. Repo **Settings → Pages → Build and deployment → Source:** GitHub Actions
-2. Re-run the **Deploy prototype to GitHub Pages** workflow (or push to `main`)
+Deployed from `main` via GitHub Actions on every push (1–2 minutes to update).
 
-Once enabled, the site URL will be:
-
-**https://duettoresearch.github.io/find-my-rate-prototype/**
-
-(Org visibility can be set to public or members-only in Pages settings.)
+Public repo on a free GitHub account — share the Pages link with anyone.
 
 ## Flows
 
